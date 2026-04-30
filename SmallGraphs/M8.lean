@@ -1,6 +1,7 @@
 import Mathlib.Combinatorics.SimpleGraph.Basic
 import Mathlib.Combinatorics.SimpleGraph.Maps
 import Mathlib.Data.ZMod.Basic
+import Mathlib.Tactic.Ring
 
 /-!
 # The Möbius ladder / Wagner graph `M₈`
@@ -41,13 +42,13 @@ theorem adj_symm : Symmetric adj := by
   have hsub : (i - j : V) = -(j - i) := by ring
   rcases h with h | h | h
   · -- j - i = 1, so i - j = -1.
-    right; left; rw [hsub, h]; ring
+    right; left; rw [hsub, h]
   · -- j - i = -1, so i - j = 1.
     left; rw [hsub, h]; ring
   · -- j - i = 4, and -4 = 4 in ZMod 8.
     right; right; rw [hsub, h]; decide
 
-theorem adj_loopless : Irreflexive adj := by
+theorem adj_loopless : ∀ i : V, ¬ adj i i := by
   intro i h
   have h0 : (i - i : V) = 0 := by ring
   rcases h with h | h | h <;> rw [h0] at h <;> exact absurd h (by decide)
@@ -56,7 +57,7 @@ theorem adj_loopless : Irreflexive adj := by
 def graph : SimpleGraph V where
   Adj := adj
   symm := adj_symm
-  loopless := adj_loopless
+  loopless := ⟨adj_loopless⟩
 
 instance : DecidableRel graph.Adj :=
   fun _ _ => (inferInstance : Decidable (adj _ _))
@@ -109,7 +110,7 @@ theorem s_map_adj_iff (i j : V) : adj (sEquiv i) (sEquiv j) ↔ adj i j := by
     · -- -(j - i) = 1, so j - i = -1.
       right; left
       have : (j - i : V) = -(-(j - i)) := by ring
-      rw [this, h₁]; ring
+      rw [this, h₁]
     · -- -(j - i) = -1, so j - i = 1.
       left
       have : (j - i : V) = -(-(j - i)) := by ring
@@ -119,7 +120,7 @@ theorem s_map_adj_iff (i j : V) : adj (sEquiv i) (sEquiv j) ↔ adj i j := by
       have : (j - i : V) = -(-(j - i)) := by ring
       rw [this, h₁]; decide
   · rintro (h₁ | h₁ | h₁)
-    · right; left; rw [h₁]; ring
+    · right; left; rw [h₁]
     · left; rw [h₁]; ring
     · right; right; rw [h₁]; decide
 
