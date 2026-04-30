@@ -1,0 +1,9 @@
+name = "small-graphs"
+defaultTargets = ["SmallGraphs"]
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+
+[[lean_lib]]
+name = "SmallGraphs"
