@@ -21,6 +21,7 @@
 ## 現在のメモ
 
 - [`notes/mobius-ladder-m8.md`](notes/mobius-ladder-m8.md): 8頂点・3正則・直径2の例としての Möbius ladder `M8`、別名 Wagner graph について。
+- [`notes/k33-one-vertex-expansion.md`](notes/k33-one-vertex-expansion.md): `K_{3,3}` の1頂点を三角形に展開した、8頂点・3正則・直径2の例について。
 
 ## 記法
 
@@ -48,4 +49,4 @@ D_8 = <r, s | r^8 = s^2 = 1, srs = r^{-1}>
 4. 辺関係を決める。
 5. 次数、直径、自己同型群などを Lean で証明する。
 
-最初の対象は `M8` です。
+最初の対象は `M8` と `K_{3,3}` の1頂点三角形展開です。
