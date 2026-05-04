@@ -22,7 +22,6 @@
 
 - [`notes/mobius-ladder-m8.md`](notes/mobius-ladder-m8.md): 8頂点・3正則・直径2の例としての Möbius ladder `M8`、別名 Wagner graph について。
 - [`notes/k33-one-vertex-expansion.md`](notes/k33-one-vertex-expansion.md): `K_{3,3}` の1頂点を三角形に展開した、8頂点・3正則・直径2の例について。
-- [`notes/moore-57/README.md`](notes/moore-57/README.md): degree 57・直径2の仮想 Moore graph における自己同型群の候補排除メモ。
 
 ## 記法
 
