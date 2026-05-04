@@ -300,9 +300,12 @@ $$
 
 ## Lean 化の状況
 
-Lean による形式化は `SmallGraphs/K33Exp.lean` で行っている。
+Lean による形式化は `SmallGraphs/K33Exp.lean` および
+`SmallGraphs/K33ExpVsM8.lean` で行っている。
 頂点集合は `V := Fin 2 ⊕ (Fin 3 ⊕ Fin 3)` として、
 `A = Fin 2`、`B = Fin 3`(左)、`T = Fin 3`(右)に対応させた。
+
+### `SmallGraphs/K33Exp.lean`
 
 形式化済みの主な命題は次の通り。
 
@@ -328,6 +331,17 @@ Lean による形式化は `SmallGraphs/K33Exp.lean` で行っている。
 - `SmallGraphs.K33Exp.card_aut`: $|\operatorname{Aut}(G)|=12$ を `native_decide` で計算。
 - `SmallGraphs.K33Exp.autEquiv`:
   自己同型群の同型 $\operatorname{Aut}(G)\cong S_3\times S_2$。
+
+### `SmallGraphs/K33ExpVsM8.lean`
+
+`K33Exp` と `M_8` が同型でないことを Lean 上で証明する。
+
+- `SmallGraphs.M8.cliqueFree_three`:
+  $M_8$ は 3-クリークを含まない(`native_decide` で確認)。
+- `SmallGraphs.isNClique_image_of_iso`:
+  グラフ同型は `IsNClique` を保つ。
+- `SmallGraphs.K33Exp_notIso_M8`:
+  `K33Exp.graph` と `M8.graph` の間に同型は存在しない。
 
 ## 未確認事項
 
