@@ -298,7 +298,37 @@ $$
 - 自己同型が $T$, $B$, $A$ をそれぞれ集合として保つことを示す。
 - よって自己同型群が $S_3\times C_2$ を超えないことを示す。
 
+## Lean 化の状況
+
+Lean による形式化は `SmallGraphs/K33Exp.lean` で行っている。
+頂点集合は `V := Fin 2 ⊕ (Fin 3 ⊕ Fin 3)` として、
+`A = Fin 2`、`B = Fin 3`(左)、`T = Fin 3`(右)に対応させた。
+
+形式化済みの主な命題は次の通り。
+
+- `SmallGraphs.K33Exp.adj`、`SmallGraphs.K33Exp.graph`: 隣接関係と単純グラフ。
+- `SmallGraphs.K33Exp.isRegular_three`、`SmallGraphs.K33Exp.degree_eq_three`:
+  3正則性、各頂点の次数が 3。
+- `SmallGraphs.K33Exp.notAdj_a_b`、`SmallGraphs.K33Exp.adj_a_c`: 個別の隣接・非隣接の事実。
+- `SmallGraphs.K33Exp.isClique_fgh`、`SmallGraphs.K33Exp.isNClique_three_fgh`:
+  $T=\{f,g,h\}$ が 3 頂点クリーク(三角形)であること。
+- `SmallGraphs.K33Exp.isNClique_three_unique`:
+  3 頂点クリークが $\{f,g,h\}$ のみであること(三角形の一意性)。
+- `SmallGraphs.K33Exp.exists_common_neighbor`:
+  異なる非隣接 2 頂点の対には共通近傍が存在する。
+- `SmallGraphs.K33Exp.edist_le_two`、`SmallGraphs.K33Exp.ediam_le_two`:
+  任意の 2 頂点間の距離が 2 以下。
+- `SmallGraphs.K33Exp.edist_a_b_eq_two`、`SmallGraphs.K33Exp.two_le_ediam`:
+  $a$, $b$ の距離は 2(下からの評価)。
+- `SmallGraphs.K33Exp.ediam_eq_two`、`SmallGraphs.K33Exp.diam_eq_two`:
+  直径がちょうど 2。
+- `SmallGraphs.K33Exp.actPerm`、`SmallGraphs.K33Exp.phi`:
+  $S_3\times S_2$ から自己同型群への準同型。
+- `SmallGraphs.K33Exp.phi_injective`: $\phi$ の単射性。
+- `SmallGraphs.K33Exp.card_aut`: $|\operatorname{Aut}(G)|=12$ を `native_decide` で計算。
+- `SmallGraphs.K33Exp.autEquiv`:
+  自己同型群の同型 $\operatorname{Aut}(G)\cong S_3\times S_2$。
+
 ## 未確認事項
 
 - 標準的な固有名は確認していない。このリポジトリでは構成を明示するため、$K_{3,3}$ の1頂点三角形展開と呼ぶ。
-- Lean 化する際には、三角形が唯一であることの証明を独立した補題として切り出すとよい。
